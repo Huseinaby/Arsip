@@ -17,6 +17,7 @@ class ImbController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
+            'nomor_dp' => 'required',
             'nama' => 'required',
             'alamat' => 'required',
             'lokasi' => 'required',
@@ -24,9 +25,9 @@ class ImbController extends Controller
             'keterangan' => 'nullable',
             'tahun' => 'required'
         ]);
-        Imb::crate($validateData);
+        Imb::create($validateData);
 
-        return redirect()->route('dashboard')->with('success', 'Data IMB berhasil ditambahkan !!');
+        return redirect()->route('home')->with('success', 'Data IMB berhasil ditambahkan !!');
     }
 
     public function update(Request $request, $id_imb){
