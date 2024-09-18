@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: 'selector',
   content: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
