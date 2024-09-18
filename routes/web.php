@@ -14,3 +14,10 @@ Route::get('/tentang', function() {
         'title' => 'Tentang'
     ]);
 });
+
+
+Route::get('/inputArsip', function() {
+    return view('form',[
+        'title'=>'Form Input IMB'
+    ]);
+});
