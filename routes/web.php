@@ -23,4 +23,14 @@ Route::get('/inputArsip', function() {
     ]);
 });
 
+// Route::get('/management', function() {
+//     return view('management',[
+//         'title'=>'Data IMB'
+//     ]);
+// });
+
 Route::post('/inputArsip', [ImbController::class, 'store']);
+
+Route::get('/management', [ImbController::class, 'management']);
+
+
