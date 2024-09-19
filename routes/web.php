@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImbController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -7,7 +8,7 @@ Route::get('/', function () {
         'title'=>'dashboard',
         'name'=>'Abu Husein',
     ]);
-});
+})->name('home');
 
 Route::get('/tentang', function() {
     return view('tentang', [
@@ -21,3 +22,5 @@ Route::get('/inputArsip', function() {
         'title'=>'Form Input IMB'
     ]);
 });
+
+Route::post('/inputArsip', [ImbController::class, 'store']);

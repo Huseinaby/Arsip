@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Imb extends Model
 {
     protected $fillable = [
+        'nomor_dp',
         'nama',
         'alamat',
         'lokasi',
         'box',
-        'text',
+        'keterangan',
         'tahun',
     ];
     use HasFactory;
