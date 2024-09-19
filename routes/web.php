@@ -33,3 +33,4 @@ Route::post('/inputArsip', [ImbController::class, 'store']);
 
 Route::get('/management', [ImbController::class, 'management']);
 
+

@@ -66,6 +66,6 @@ class ImbController extends Controller
         return view('management', compact('items',"title"));
     }
 
-    
+
     
 }
