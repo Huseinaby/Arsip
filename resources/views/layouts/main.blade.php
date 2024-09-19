@@ -9,9 +9,9 @@
     <title>{{ $title }}</title>
 </head>
 
-<body>
+<body >
     @include('partials.navbar')
-    <div class="mx-auto w-full px-4 py-6 sm:px-6 lg:px-8">
+    <div class="mx-auto  px-4 py-6 sm:px-6 lg:px-8">
         @yield('container')
     </div>
     @include('partials.footer')

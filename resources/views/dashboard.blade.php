@@ -56,4 +56,5 @@
 
 <h1 class="text-center to-blue-700 text-9xl">Hello World</h1>
 
+
 @endsection

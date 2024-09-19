@@ -34,3 +34,9 @@ Route::post('/inputArsip', [ImbController::class, 'store']);
 Route::get('/management', [ImbController::class, 'management']);
 
 
+Route::get('/login',function(){
+    return view('login.index',[
+        'title'=>'Login Page'
+    ]);
+});
+
