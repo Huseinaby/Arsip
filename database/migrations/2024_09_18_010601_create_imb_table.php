@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('box');
             $table->text('keterangan');
             $table->year('tahun');
+            $table->string('imbs');
             $table->timestamps();
         });
     }

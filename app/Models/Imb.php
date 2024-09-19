@@ -15,6 +15,7 @@ class Imb extends Model
         'box',
         'keterangan',
         'tahun',
+        'imbs',
     ];
     use HasFactory;
 }
