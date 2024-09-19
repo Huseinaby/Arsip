@@ -53,4 +53,18 @@ class ImbController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Data IMB berhasil dihapus !!');
     }
+
+    public function management()
+{
+    $items = imb::paginate(23); // Membatasi 25 data per halaman
+    
+    $title = "Data IMB";
+
+    // Mengirim data ke view
+    return view('management', compact('items', 'title'));
+}
+
+
+
+    
 }

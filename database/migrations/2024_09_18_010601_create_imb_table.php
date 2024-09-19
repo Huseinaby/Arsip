@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('alamat');
             $table->text('lokasi');
             $table->string('box');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->year('tahun');
             $table->string('imbs');
             $table->timestamps();
