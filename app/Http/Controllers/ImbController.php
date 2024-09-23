@@ -36,8 +36,7 @@ class ImbController extends Controller
         $fileName = 'merged_imb_' . time() . '.pdf';
         $validateData['imbs'] = $fileName;
 
-        $filePath = public_path('imbs/' . $fileName);
-        file_put_contents($filePath, $pdfContent);
+        Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);
 
 
         Imb::create($validateData);
