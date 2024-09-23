@@ -32,6 +32,7 @@ Route::get('/inputArsip', function() {
 Route::post('/inputArsip', [ImbController::class, 'store']);
 
 Route::get('/management', [ImbController::class, 'management']);
+Route::get('/lihat/{name}', [ImbController::class, 'show']);
 
 
 Route::get('/login',function(){
