@@ -135,23 +135,24 @@
                                 </svg>
                             </a>
 
-                        </td>
+                    </td>
+                    <td class="px-6 py-4 hidden-print">
+                        <a href="#" class="print-pdf font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        data-file="{{ asset('storage/imbs/' . $item->imbs) }}"
+                        >
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                    d="M16.444 18H19a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h2.556M17 11V5a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v6h10ZM7 15h10v4a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-4Z" />
+                            </svg>
+                        </a>
+                    </td>
 
-                        <td class="px-6 py-4 hidden-print">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><svg
-                                    class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                    viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
-                                        d="M16.444 18H19a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h2.556M17 11V5a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v6h10ZM7 15h10v4a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-4Z" />
-                                </svg>
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <div>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <div>
 
         </div>
     </div>
@@ -253,16 +254,30 @@
     </div>
 
 
-    <script>
-        function openEditModal(item) {
-            document.getElementById('edit_id').value = item.id;
-            document.getElementById('edit_nomor_dp').value = item.nomor_dp;
-            document.getElementById('edit_nama').value = item.nama;
-            document.getElementById('edit_alamat').value = item.alamat;
-            document.getElementById('edit_lokasi').value = item.lokasi;
-            document.getElementById('edit_keterangan').value = item.keterangan;
-            document.getElementById('edit_box').value = item.box;
-            document.getElementById('edit_tahun').value = item.tahun;
+<script>
+
+document.querySelectorAll('.print-pdf').forEach(function(element) {
+        element.addEventListener('click', function (e) {
+            e.preventDefault(); // Mencegah link default
+            var pdfFile = this.getAttribute('data-file'); // Ambil URL PDF dari data-file
+
+            // Buka PDF di tab baru dan memicu print
+            var win = window.open(pdfFile, '_blank');
+            win.onload = function() {
+                win.print();
+            };
+        });
+    });
+
+    function openEditModal(item) {
+        document.getElementById('edit_id').value = item.id;
+        document.getElementById('edit_nomor_dp').value = item.nomor_dp;
+        document.getElementById('edit_nama').value = item.nama;
+        document.getElementById('edit_alamat').value = item.alamat;
+        document.getElementById('edit_lokasi').value = item.lokasi;
+        document.getElementById('edit_keterangan').value = item.keterangan;
+        document.getElementById('edit_box').value = item.box;
+        document.getElementById('edit_tahun').value = item.tahun;
 
             document.getElementById('editModal').classList.remove('hidden');
         }
