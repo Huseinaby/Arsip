@@ -1,14 +1,11 @@
 <?php
 
-use App\Http\Controllers\ImbController;
+use App\Models\Imb;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImbController;
+use App\Http\Controllers\DataController;
 
-Route::get('/', function () {
-    return view('dashboard',[
-        'title'=>'dashboard',
-        'name'=>'Abu Husein',
-    ]);
-})->name('home');
+Route::get('/',[DataController::class,'index'])->name('home');
 
 Route::get('/tentang', function() {
     return view('tentang', [
@@ -40,3 +37,4 @@ Route::get('/login',function(){
     ]);
 });
 
+// 'jumlahData'=>count(Imb::all()),

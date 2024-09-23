@@ -54,7 +54,48 @@
 </div>
 
 
-<h1 class="text-center to-blue-700 text-9xl">Hello World</h1>
+
+
+<div class="grid grid-cols-6 gap-4 my-20 ">
+    <div class="w-96 h-69 col-start-1 col-end-3">
+        <canvas id="myPieChart"></canvas>
+    </div>
+    <div class="col-end-7 col-span-2">
+        <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400">Data Surat Izin Mendirikan Bangunan</p>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var data = @json($dataPerTahun);
+
+    var labels = data.map(item => item.tahun);
+    var counts = data.map(item => item.count);
+
+    var ctx = document.getElementById('myPieChart').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: counts,
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+</script>
 
 
 @endsection
