@@ -65,8 +65,9 @@ class ImbController extends Controller
 
     public function show($name)
     {
-        return view('lihatPdf', [
-            "fileName" => $name
+        $path = storage_path('app/public/imbs/'. $name);
+        return response()->file($path, [
+            'Content-Type' => 'application/pdf'
         ]);
     }
 }

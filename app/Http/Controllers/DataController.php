@@ -21,7 +21,7 @@ class DataController extends Controller
         return view('dashboard', [
             'title' => 'Dashboad',
             'dataPerTahun' => $dataPerTahun,
-            'jumlahData'=> 
+            'jumlahData'=> count(Imb::all())
 
         ]);
     }

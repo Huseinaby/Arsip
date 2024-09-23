@@ -56,18 +56,22 @@
 
 
 
-<div class="grid grid-cols-6 gap-4 my-20 ">
-    <div class="w-96 h-69 col-start-1 col-end-3">
-        <canvas id="myPieChart"></canvas>
-    </div>
-    <div class="col-end-7 col-span-2">
-        <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Data Surat Izin Mendirikan Bangunan</p>
+<div class="container mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2 my-20">
+        <div class="w-full  sm:col-start-1 sm:col-end-3">
+            <canvas id="myPieChart"></canvas>
+        </div>
+        <div class="col-span-1 sm:col-span-2 lg:col-span-3 lg:col-end-7">
+            <div class="block max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Jumlah Data {{$jumlahData}}</h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">
+                    Data Surat Izin Mendirikan Bangunan Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo obcaecati commodi minus porro quasi ullam esse ut, ratione amet reprehenderit dolorem. Unde dolore reprehenderit nobis! Commodi odit et alias deserunt, veniam distinctio consectetur harum non accusantium similique dolorem!
+                </p>
+            </div>
         </div>
     </div>
-
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
