@@ -37,7 +37,7 @@ class ImbController extends Controller
 
         Imb::create($validateData);
 
-        return redirect()->route('home')->with('success', 'Data IMB berhasil ditambahkan !!');
+        return redirect()->route('managementa')->with('success', 'Data IMB berhasil ditambahkan !!');
     }
 
     public function destroy($id_imb)
@@ -46,7 +46,7 @@ class ImbController extends Controller
 
         $imb->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Data IMB berhasil dihapus !!');
+        return redirect()->route('home')->with('success', 'Data IMB berhasil dihapus !!');
     }
 
     public function management()
