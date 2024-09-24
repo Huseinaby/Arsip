@@ -50,7 +50,7 @@ class ImbController extends Controller
 
         $imb->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Data IMB berhasil dihapus !!');
+        return redirect()->route('home')->with('success', 'Data IMB berhasil dihapus !!');
     }
 
     public function management()
