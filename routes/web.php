@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Imb;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImbController;
 use App\Http\Controllers\DataController;
@@ -21,15 +20,11 @@ Route::get('/inputArsip', function() {
     ]);
 })->middleware('auth');
 
-// Route::get('/management', function() {
-//     return view('management',[
-//         'title'=>'Data IMB'
-//     ]);
-// });
+
 
 Route::post('/inputArsip', [ImbController::class, 'store'])->middleware('auth');
 
-Route::get('/management', [ImbController::class, 'management'])->middleware('auth');
+Route::get('/management', [ImbController::class, 'management'])->middleware('auth')->name('management');
 Route::get('/lihat/{name}', [ImbController::class, 'show'])->middleware('auth');
 
 
@@ -37,4 +32,7 @@ Route::get('/', [UserController::class, 'index'])->name('login')->middleware('gu
 Route::post('/login', [UserController::class, 'auth']);
 Route::post('/logout', [UserController::class, 'logout']);
 
-// 'jumlahData'=>count(Imb::all()),
+Route::get('/imb/print-all', [ImbController::class, 'printAll'])->name('imb.printAll');
+
+
+// web.php// web.php
