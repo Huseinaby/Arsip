@@ -24,6 +24,7 @@ class imbFactory extends Factory
             'box' => $this->faker->randomDigitNotNull,
             'keterangan' => $this->faker->sentence,
             'tahun' => $this->faker->year,
+            'imbs' =>$this->faker->name,
         ];
     }
 }

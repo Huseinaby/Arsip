@@ -65,9 +65,20 @@ class ImbController extends Controller
 
     public function show($name)
     {
-        $path = storage_path('app/public/imbs/'. $name);
+        $path = storage_path('app/public/imbs/' . $name);
         return response()->file($path, [
             'Content-Type' => 'application/pdf'
         ]);
+    }
+
+    public function printAll()
+    {
+        // Mengambil semua data tanpa pagination
+        $items = imb::all();
+
+        $title = "Cetak Semua Data IMB";
+
+        // Menampilkan view yang sudah diformat untuk print
+        return view('management_print', compact('items', 'title'));
     }
 }

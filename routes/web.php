@@ -28,7 +28,7 @@ Route::get('/inputArsip', function() {
 
 Route::post('/inputArsip', [ImbController::class, 'store']);
 
-Route::get('/management', [ImbController::class, 'management']);
+Route::get('/management', [ImbController::class, 'management'])->name('management');
 Route::get('/lihat/{name}', [ImbController::class, 'show']);
 
 
@@ -37,5 +37,11 @@ Route::get('/login',function(){
         'title'=>'Login Page'
     ]);
 });
+
+Route::get('/imb/print-all', [ImbController::class, 'printAll'])->name('imb.printAll');
+
+
+// web.php// web.php
+
 
 // 'jumlahData'=>count(Imb::all()),
