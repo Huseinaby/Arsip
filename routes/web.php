@@ -37,6 +37,3 @@ Route::get('/imb/print-all', [ImbController::class, 'printAll'])->name('imb.prin
 
 
 // web.php// web.php
-
-
-// 'jumlahData'=>count(Imb::all()),
