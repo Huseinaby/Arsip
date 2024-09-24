@@ -5,15 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Imb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Console\Input\Input;
 
 class ImbController extends Controller
 {
-    public function index()
-    {
-        return view('imb', [
-            'imbs' => Imb::all()
-        ]);
-    }
+    
 
     public function store(Request $request)
     {
@@ -55,7 +51,7 @@ class ImbController extends Controller
 
     public function management()
     {
-        $items = imb::paginate(23); // Membatasi 25 data per halaman
+        $items = imb::orderBy('nomor_dp','asc')->paginate(23); // Membatasi 25 data per halaman
 
         $title = "Data IMB";
 
@@ -80,5 +76,19 @@ class ImbController extends Controller
 
         // Menampilkan view yang sudah diformat untuk print
         return view('management_print', compact('items', 'title'));
+    }
+
+    public function search(Request $request){
+        if($request->filled('field') && $request->filled('query')){
+            $field = $request->input('field');
+            $query = $request->input('query');
+
+            $items = Imb::where($field,'LIKE','%' . $query . '%' )->get();
+        } else{
+            $items = Imb::all();
+        }
+
+        return view('management',compact($items));
+
     }
 }

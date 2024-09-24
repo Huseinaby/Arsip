@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Imb;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImbController;
 use App\Http\Controllers\DataController;
@@ -20,11 +19,7 @@ Route::get('/inputArsip', function() {
     ]);
 });
 
-// Route::get('/management', function() {
-//     return view('management',[
-//         'title'=>'Data IMB'
-//     ]);
-// });
+
 
 Route::post('/inputArsip', [ImbController::class, 'store']);
 
