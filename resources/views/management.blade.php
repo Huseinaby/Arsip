@@ -3,7 +3,7 @@
 @section('container')
 
 <!--batas -->
-<form  method="GET" class="max-w-lg mx-auto my-3">
+<form action="{{ route('management.search') }}" method="GET" class="max-w-lg mx-auto my-3">
     <div class="flex">
         <button id="dropdown-button" data-dropdown-toggle="dropdown"
             class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
@@ -20,37 +20,37 @@
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="no DP">No Dp</button>
+                        data-filter="nomor_dp">No Dp</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="Nama">Nama</button>
+                        data-filter="nama">Nama</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="Alamat">Alamat</button>
+                        data-filter="alamat">Alamat</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="Lokasi">Lokasi</button>
+                        data-filter="lokasi">Lokasi</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="Keterangan">Keterangan</button>
+                        data-filter="keterangan">Keterangan</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="Box">Box</button>
+                        data-filter="box">Box</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="Tahun">Tahun</button>
+                        data-filter="tahun">Tahun</button>
                 </li>
             </ul>
         </div>
@@ -58,7 +58,7 @@
         <div class="relative w-full">
             <input type="search" id="search-dropdown"
                 class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                placeholder="Search..... " name="query" required />
+                placeholder="Search..... " name="query"  />
             <input type="hidden" name="field" id="field" value="">
             <button type="submit"
                 class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -259,20 +259,18 @@
 
 <script>
     // Set the value of hidden input with the filter selected(search)
-    document.getElementById('field').value = this.getAttribute('data-filter');
-    document.getElementById('dropdown-button').innerText = this.getAttribute('data-filter');
 
     // select dropdown 
+    document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.filter-item').forEach(button => {
         button.addEventListener('click', function() {
-            // Ganti teks tombol filter dengan nilai dari data-filter
+            document.getElementById('field').value = this.getAttribute('data-filter');
             document.getElementById('dropdown-button').innerHTML =
                 `${this.dataset.filter} <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>`;
-
-            // Menyembunyikan dropdown setelah item dipilih
             document.getElementById('dropdown').classList.add('hidden');
         });
     });
+});
 
     // Fungsi untuk toggle dropdown visibility
     document.getElementById('dropdown-button').addEventListener('click', function() {

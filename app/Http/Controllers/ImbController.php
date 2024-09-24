@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\Input;
 
 class ImbController extends Controller
 {
-    
+
 
     public function store(Request $request)
     {
@@ -51,8 +51,8 @@ class ImbController extends Controller
 
     public function management()
     {
-        $items = imb::orderBy('nomor_dp','asc')->paginate(23); // Membatasi 25 data per halaman
-
+        $items = Imb::orderBy('nomor_dp', 'asc')->paginate(23); // Membatasi 25 data per halaman
+        // $items = Imb::latest()->paginate(23);
         $title = "Data IMB";
 
         // Mengirim data ke view
@@ -61,23 +61,40 @@ class ImbController extends Controller
 
     public function show($name)
     {
-        $path = storage_path('app/public/imbs/'. $name);
+        $path = storage_path('app/public/imbs/' . $name);
         return response()->file($path, [
             'Content-Type' => 'application/pdf'
         ]);
     }
 
-    public function search(Request $request){
-        if($request->filled('field') && $request->filled('query')){
-            $field = $request->input('field');
-            $query = $request->input('query');
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+    $field = $request->input('field');
 
-            $items = Imb::where($field,'LIKE','%' . $query . '%' )->get();
-        } else{
-            $items = Imb::all();
-        }
-
-        return view('management',compact($items));
-
+    // Cek jika field dan query kosong
+    if (!$request->filled('query') && !$request->filled('field')) {
+        // Jika tidak ada isian query atau field, kembali ke halaman management
+        return redirect()->route('management'); // Ganti 'management' dengan nama rute yang sesuai
     }
+
+    // Lakukan pencarian berdasarkan field yang dipilih
+    if ($request->filled('query') && $request->filled('field')) {
+        $items = Imb::where($field, 'like', '%' . $query . '%')->paginate();
+    } elseif ($request->filled('query')) {
+        // Jika hanya query yang terisi, cari semua data
+        $items = Imb::where('nomor_dp', 'like', '%' . $query . '%')
+            ->orWhere('nama', 'like', '%' . $query . '%')
+            ->orWhere('alamat', 'like', '%' . $query . '%')
+            ->orWhere('lokasi', 'like', '%' . $query . '%')
+            ->orWhere('box', 'like', '%' . $query . '%')
+            ->orWhere('keterangan', 'like', '%' . $query . '%')
+            ->orWhere('tahun', 'like', '%' . $query . '%')
+            ->paginate();
+    }
+
+    $title = 'Data IMB';
+
+    return view('management', compact('items', 'title'));
+}
 }
