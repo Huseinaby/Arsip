@@ -61,7 +61,11 @@ class ImbController extends Controller
 
     public function show($name)
     {
+<<<<<<< HEAD
         $path = storage_path('storage/imbs/' . $name);
+=======
+        $path = storage_path('app/public/imbs/'. $name);
+>>>>>>> 2dedf864270b75f60a3652d7f8e74d3aa3f2b238
         return response()->file($path, [
             'Content-Type' => 'application/pdf'
         ]);
