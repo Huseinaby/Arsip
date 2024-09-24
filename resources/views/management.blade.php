@@ -314,30 +314,18 @@
 
 
     function printTable() {
-        // Mendapatkan elemen tabel
-        let table = document.getElementById('dataTable').outerHTML;
-
-        // Membuat jendela baru untuk print
-        let printWindow = window.open('', '', 'height=800,width=1200');
-
-        // Menulis HTML ke jendela print
-        printWindow.document.write('<html><head><title>Data IMB</title>');
-        printWindow.document.write(
-            '<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid black; padding: 8px; } th { background-color: #f2f2f2; } @media print { .hidden-print { display: none !important; } }</style>'
-        );
-        printWindow.document.write('</head><body >');
-        printWindow.document.write(table);
-        printWindow.document.write('</body></html>');
-
-        // Menutup jendela print dan memanggil fungsi print
-        printWindow.document.close();
+    const printWindow = window.open("{{ route('imb.printAll') }}", "_blank", "width=800,height=600");
+    printWindow.onload = function () {
         printWindow.focus();
         printWindow.print();
 
-        setTimeout(function() {
+        // Menutup jendela cetak dan kembali ke halaman management setelah beberapa detik
+        setTimeout(() => {
             printWindow.close();
-        }, 100);
-    }
+            window.location.href = "{{ route('management') }}"; // Kembali ke halaman management setelah cetak
+        }, 5000); // menunggu 5 detik (5000 ms) sebelum kembali
+    };
+}
 
 
     // Menambahkan event listener untuk tombol print
