@@ -34,3 +34,7 @@ Route::get('/login',function(){
     ]);
 });
 
+Route::get('/imb/print-all', [ImbController::class, 'printAll'])->name('imb.printAll');
+
+
+// web.php// web.php

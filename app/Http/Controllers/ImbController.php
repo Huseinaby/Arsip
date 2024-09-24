@@ -67,6 +67,17 @@ class ImbController extends Controller
         ]);
     }
 
+    public function printAll()
+    {
+        // Mengambil semua data tanpa pagination
+        $items = imb::all();
+
+        $title = "Cetak Semua Data IMB";
+
+        // Menampilkan view yang sudah diformat untuk print
+        return view('management_print', compact('items', 'title'));
+    }
+
     public function search(Request $request)
 {
     $query = $request->input('query');
