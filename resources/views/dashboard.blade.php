@@ -73,15 +73,18 @@
 </div>
 
 
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var data = @json($dataPerTahun);
+    let data = @json($dataPerTahun);
 
-    var labels = data.map(item => item.tahun);
-    var counts = data.map(item => item.count);
+    let labels = data.map(item => item.tahun);
+    let counts = data.map(item => item.count);
 
-    var ctx = document.getElementById('myPieChart').getContext('2d');
-    var myPieChart = new Chart(ctx, {
+    let ctx = document.getElementById('myPieChart').getContext('2d');
+    let myPieChart = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: labels,
