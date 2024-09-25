@@ -53,9 +53,6 @@
     </button>
 </div>
 
-
-
-
 <div class="container mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2 my-20">
         <div class="w-full  sm:col-start-1 sm:col-end-3">
