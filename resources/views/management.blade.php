@@ -233,13 +233,13 @@
                              <input
                                  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                  id="multiple_files" name="imbs[]" type="file"value="{{ $item->imbs }}"
-                                 multiple>
+                                 multiple accept=".pdf">
                                  <input type="hidden" id="merge_imbs" name="imbs">
                          </div>
 
                          <div class="mb-14"></div>
 
-                         <div class="flex justify-end">
+                         <div class="flex justify-evenly">
                              <button type="button" onclick="closeModal()"
                                  class="text-white bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded">Cancel</button>
                              <button type="button" id="mergeButton"
