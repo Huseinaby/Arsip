@@ -53,7 +53,7 @@ class ImbController extends Controller
         $imb = Imb::where('id', $id_imb)->firstOrFail();
         
         $validateData = $request->validate([
-            'nomor_dp' => 'required|numericp',
+            'nomor_dp' => 'required|numeric',
             'nama' => 'required',
             'alamat' => 'required',
             'lokasi' => 'required',
