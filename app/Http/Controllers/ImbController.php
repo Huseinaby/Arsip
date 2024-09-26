@@ -118,7 +118,7 @@ class ImbController extends Controller
     $field = $request->input('field');
 
     // Cek jika field dan query kosong
-    if (!$request->filled('query') && !$request->filled('field')) {
+    if ((!$request->filled('query') && !$request->filled('field')) || ((!$request->filled('query') && $request->filled('field')))) {
         // Jika tidak ada isian query atau field, kembali ke halaman management
         return redirect()->route('management'); // Ganti 'management' dengan nama rute yang sesuai
     }
