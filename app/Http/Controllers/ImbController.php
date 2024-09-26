@@ -29,7 +29,7 @@ class ImbController extends Controller
         $pdfContent = base64_decode(preg_replace('#^data:application/pdf;base64,#i', '', $base64Pdf));
 
         // Simpan file ke storage Laravel (atau folder tertentu)
-        $fileName = 'merged_imb_' . time() . '.pdf';
+        $fileName = 'imb_' . $request['nomor_dp'] . '_' . $request['tahun'] . '.pdf';
         $validateData['imbs'] = $fileName;
 
         Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);
@@ -49,8 +49,38 @@ class ImbController extends Controller
         return redirect()->route('home')->with('success', 'Data IMB berhasil dihapus !!');
     }
 
-    public function update(Request $request){
-        dd($request);
+    public function update(Request $request, $id_imb){
+        $imb = Imb::where('id', $id_imb)->firstOrFail();
+        
+        $validateData = $request->validate([
+            'nomor_dp' => 'required',
+            'nama' => 'required',
+            'alamat' => 'required',
+            'lokasi' => 'required',
+            'box' => 'required',
+            'keterangan' => 'nullable',
+            'tahun' => 'required',
+        ]);
+
+        if($request->filled('imbs')){
+            if($imb->imbs){
+                Storage::delete('storage/app/public/imbs/' . $imb->imbs);
+            }
+
+            $base64Pdf = $request->input('imbs');
+            $pdfContent = base64_decode(preg_replace('#^data:application/pdf;base64,#i', '', $base64Pdf));
+
+            $fileName = 'imb_' . $request['nomor_dp'] . '_' . $request['tahun'] . '.pdf';
+            $validateData['imbs'] = $fileName;
+    
+            Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);            
+        } else {
+            $validateData['imbs'] = $imb->imbs;
+        }
+
+        $imb->update($validateData);
+
+        return redirect()->route('management')->with('success', 'IMB Berhasil dirubah!!');
     }
 
     public function management()

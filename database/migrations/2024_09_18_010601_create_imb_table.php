@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('imbs', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_dp')->unique();
+            $table->string('nomor_dp');
             $table->string('nama');
             $table->text('alamat');
             $table->text('lokasi');

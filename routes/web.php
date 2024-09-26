@@ -37,7 +37,7 @@ Route::post('/logout', [UserController::class, 'logout']);
 
 Route::get('/imb/print-all', [ImbController::class, 'printAll'])->name('imb.printAll');
 
-Route::put('/update-item', [ImbController::class, 'update']);
+Route::put('/update-item/{id}', [ImbController::class, 'update']);
 
 
 // web.php// web.php
