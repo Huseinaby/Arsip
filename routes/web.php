@@ -24,9 +24,11 @@ Route::get('/inputArsip', function() {
 
 
 Route::post('/inputArsip', [ImbController::class, 'store'])->middleware('auth');
-
 Route::get('/management', [ImbController::class, 'management'])->middleware('auth')->name('management');
-Route::get('/lihat/{name}', [ImbController::class, 'show'])->middleware('auth');
+Route::get('/management/search', [ImbController::class, 'search'])->name('management.search');
+
+Route::get('/management', [ImbController::class, 'management'])->name('management');
+Route::get('/lihat/{name}', [ImbController::class, 'show']);
 
 
 Route::get('/', [UserController::class, 'index'])->name('login')->middleware('guest');
