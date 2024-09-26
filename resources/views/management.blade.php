@@ -151,108 +151,107 @@
                         </td>
 
                     </tr>
-
-                    <!-- Edit Form  -->
-                    <div id="editModal"
-                        class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-800 bg-opacity-50">
-                        <div class="bg-gray-100 p-6 rounded-lg shadow-lg border">
-                            <h2 class="text-lg font-bold mb-4">Edit Data</h2>
-
-                            <form action="/update-item/{{ $item->id }}" method="POST">
-                                @method('put');
-                                @csrf
-                                <input type="hidden" id="edit_id" name="id">
-
-                                <!-- Menggunakan grid layout -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="relative z-0 w-full mb-5 group">
-                                        <input type="text" name="nomor_dp" id="edit_nomor_dp"
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" " value="{{ $item->nomor_dp }}" required />
-                                        <label for="floating_nomor_dp"
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nomor
-                                            DP</label>
-                                        @if ($errors->has('nomor_dp'))
-                                            <p class="text-red-500 text-xs mt-2">{{ $errors->first('nomor_dp') }}</p>
-                                        @endif
-                                    </div>
-
-                                    <div class="relative z-0 w-full mb-5 group">
-                                        <input type="text" name="nama" id="edit_nama"
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" " value="{{ $item->nama }}" required />
-                                        <label for="floating_nama"
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nama</label>
-                                    </div>
-
-                                    <div class="relative z-0 w-full mb-5 group">
-                                        <input type="text" name="alamat" id="edit_alamat"
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" " value="{{ $item->alamat }}" required />
-                                        <label for="floating_alamat"
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Alamat</label>
-                                    </div>
-
-                                    <div class="relative z-0 w-full mb-5 group">
-                                        <input type="text" name="lokasi" id="edit_lokasi"
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" " value="{{ $item->lokasi }}" required />
-                                        <label for="floating_lokasi"
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Lokasi</label>
-                                    </div>
-
-                                    <div class="relative z-0 w-full mb-5 group">
-                                        <input type="text" name="box" id="edit_box"
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" " value="{{ $item->box }}" required />
-                                        <label for="floating_box"
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Box</label>
-                                    </div>
-
-                                    <div class="relative z-0 w-full mb-5 group">
-                                        <input type="text" name="keterangan" id="edit_keterangan"
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" " value="{{ $item->keterangan }}" />
-                                        <label for="floating_keterangan"
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Keterangan</label>
-                                    </div>
-
-                                    <div class="relative z-0 w-full mb-5 group">
-                                        <input type="text" name="tahun" id="edit_tahun"
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" " value="{{ $item->tahun }}" required />
-                                        <label for="floating_tahun"
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tahun</label>
-                                    </div>
-                                </div>
-                                <div class="mb-14">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                        for="multiple_files">Upload
-                                        File
-                                        IMB</label>
-                                    <input
-                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                        id="multiple_files" name="imbs[]" type="file"value="{{ $item->imbs }}"
-                                        multiple>
-                                        <input type="hidden" id="merge_imbs" name="imbs">
-                                </div>
-
-                                <div class="mb-14"></div>
-
-                                <div class="flex justify-end">
-                                    <button type="button" onclick="closeModal()"
-                                        class="text-white bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded">Cancel</button>
-                                    <button type="button" id="mergeButton"
-                                        class="text-white bg-green-500 hover:bg-green-700 font-bold py-2 px-4 rounded">
-                                        Gabungkan PDF
-                                    </button>
-                                    <button type="submit"
-                                        class="ml-2 text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded">Save</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 @endforeach
+                 <!-- Edit Form  -->
+                 <div id="editModal"
+                 class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-800 bg-opacity-50">
+                 <div class="bg-gray-100 p-6 rounded-lg shadow-lg border">
+                     <h2 class="text-lg font-bold mb-4">Edit Data</h2>
+
+                     <form action="/update-item/{{ $item->id }}" method="POST">
+                         @method('put');
+                         @csrf
+                         <input type="hidden" id="edit_id" name="id">
+
+                         <!-- Menggunakan grid layout -->
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                             <div class="relative z-0 w-full mb-5 group">
+                                 <input type="text" name="nomor_dp" id="edit_nomor_dp"
+                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                     placeholder=" " value="{{ $item->nomor_dp }}" required />
+                                 <label for="floating_nomor_dp"
+                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nomor
+                                     DP</label>
+                                 @if ($errors->has('nomor_dp'))
+                                     <p class="text-red-500 text-xs mt-2">{{ $errors->first('nomor_dp') }}</p>
+                                 @endif
+                             </div>
+
+                             <div class="relative z-0 w-full mb-5 group">
+                                 <input type="text" name="nama" id="edit_nama"
+                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                     placeholder=" " value="{{ $item->nama }}" required />
+                                 <label for="floating_nama"
+                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nama</label>
+                             </div>
+
+                             <div class="relative z-0 w-full mb-5 group">
+                                 <input type="text" name="alamat" id="edit_alamat"
+                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                     placeholder=" " value="{{ $item->alamat }}" required />
+                                 <label for="floating_alamat"
+                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Alamat</label>
+                             </div>
+
+                             <div class="relative z-0 w-full mb-5 group">
+                                 <input type="text" name="lokasi" id="edit_lokasi"
+                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                     placeholder=" " value="{{ $item->lokasi }}" required />
+                                 <label for="floating_lokasi"
+                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Lokasi</label>
+                             </div>
+
+                             <div class="relative z-0 w-full mb-5 group">
+                                 <input type="text" name="box" id="edit_box"
+                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                     placeholder=" " value="{{ $item->box }}" required />
+                                 <label for="floating_box"
+                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Box</label>
+                             </div>
+
+                             <div class="relative z-0 w-full mb-5 group">
+                                 <input type="text" name="keterangan" id="edit_keterangan"
+                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                     placeholder=" " value="{{ $item->keterangan }}" />
+                                 <label for="floating_keterangan"
+                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Keterangan</label>
+                             </div>
+
+                             <div class="relative z-0 w-full mb-5 group">
+                                 <input type="text" name="tahun" id="edit_tahun"
+                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                     placeholder=" " value="{{ $item->tahun }}" required />
+                                 <label for="floating_tahun"
+                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tahun</label>
+                             </div>
+                         </div>
+                         <div class="mb-14">
+                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                 for="multiple_files">Upload
+                                 File
+                                 IMB</label>
+                             <input
+                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                 id="multiple_files" name="imbs[]" type="file"value="{{ $item->imbs }}"
+                                 multiple>
+                                 <input type="hidden" id="merge_imbs" name="imbs">
+                         </div>
+
+                         <div class="mb-14"></div>
+
+                         <div class="flex justify-end">
+                             <button type="button" onclick="closeModal()"
+                                 class="text-white bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded">Cancel</button>
+                             <button type="button" id="mergeButton"
+                                 class="text-white bg-green-500 hover:bg-green-700 font-bold py-2 px-4 rounded">
+                                 Gabungkan PDF
+                             </button>
+                             <button type="submit"
+                                 class="ml-2 text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded">Save</button>
+                         </div>
+                     </form>
+                 </div>
+             </div>
             </tbody>
         </table>
         <div>
@@ -336,6 +335,13 @@
 
 
         function openEditModal(item) {
+            document.getElementById('edit_id').value = item.id;
+            document.getElementById('edit_nomor_dp').value = item.nomor_dp;
+            document.getElementById('edit_alamat').value = item.alamat;
+            document.getElementById('edit_lokasi').value = item.lokasi;
+            document.getElementById('edit_keterangan').value = item.keterangan;
+            document.getElementById('edit_box').value = item.box;
+            document.getElementById('edit_tahun').value = item.tahun;
             document.getElementById('editModal').classList.remove('hidden');
         }
 

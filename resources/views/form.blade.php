@@ -128,6 +128,7 @@
                 document.getElementById('merge_imbs').value = base64data;
                 alert('File PDF berhasil digabungkan dan siap untuk disubmit.');
             };
+            
         });
     </script>
 @endsection

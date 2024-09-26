@@ -14,7 +14,7 @@ class ImbController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nomor_dp' => 'required|unique:imbs',
+            'nomor_dp' => 'required|numeric',
             'nama' => 'required',
             'alamat' => 'required',
             'lokasi' => 'required',
