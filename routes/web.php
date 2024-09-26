@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImbController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UserController;
+use App\Models\Imb;
 
 Route::get('/dashboard',[DataController::class,'index'])->name('home')->middleware('auth');
 
@@ -33,6 +34,8 @@ Route::post('/login', [UserController::class, 'auth']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 Route::get('/imb/print-all', [ImbController::class, 'printAll'])->name('imb.printAll');
+
+Route::put('/update-item', [ImbController::class, 'update']);
 
 
 // web.php// web.php

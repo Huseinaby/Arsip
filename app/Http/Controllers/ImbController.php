@@ -49,6 +49,10 @@ class ImbController extends Controller
         return redirect()->route('home')->with('success', 'Data IMB berhasil dihapus !!');
     }
 
+    public function update(Request $request){
+        dd($request);
+    }
+
     public function management()
     {
         $items = imb::orderBy('nomor_dp','asc')->paginate(23); // Membatasi 25 data per halaman
