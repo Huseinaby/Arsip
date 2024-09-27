@@ -254,7 +254,7 @@
                             </form>
                         </div>
                     </div>
-                </tbody>
+                </tbody
         </table>
         <div>
 
