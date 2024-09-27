@@ -5,7 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cetak Semua Data IMB</title>
+    
+    
+    
     <style>
         table {
             width: 100%;
@@ -28,20 +30,41 @@
             }
         }
     </style>
+    <script>
+    window.onload = function() {
+        window.print();
+    };
+        window.onafterprint = function() {
+            window.close();
+    };
+</script>
+
 </head>
 
 <body>
-<h3 style="text-align: center;">{{ $title }}</h3>
+    <h3 style="text-align: center;">PEMERINTAH KOTA BANJARMASIN</h3>
+    <h3 style="text-align: center;">DATA IZIN MENDIRIKAN BANGUNAN (IMB)</h3>
     <table>
-        <thead>
-            <tr>
-                <th>NO DP</th>
-                <th>Nama</th>
-                <th>Alamat</th>
-                <th>Lokasi</th>
-                <th>Keterangan</th>
-                <th>Boks</th>
-                <th>Tahun</th>
+        <thead  >
+            <tr >
+                <th style="background-color: #00CCDD;">NO DP</th>
+                <th style="background-color: #00CCDD;">Nama</th>
+                <th style="background-color: #00CCDD;">Alamat</th>
+                <th style="background-color: #00CCDD;">Lokasi</th>
+                <th style="background-color: #00CCDD;">Keterangan</th>
+                <th style="background-color: #00CCDD;">Boks</th>
+                <th style="background-color: #00CCDD;">Tahun</th>
+            </tr>
+        </thead>
+        <thead  >
+            <tr >
+                <th style="background-color: #7CF5FF;">1</th>
+                <th style="background-color: #7CF5FF;">2</th>
+                <th style="background-color: #7CF5FF;">3</th>
+                <th style="background-color: #7CF5FF;">4</th>
+                <th style="background-color: #7CF5FF;">5</th>
+                <th style="background-color: #7CF5FF;">6</th>
+                <th style="background-color: #7CF5FF;">7</th>
             </tr>
         </thead>
         <tbody>
