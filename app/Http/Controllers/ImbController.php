@@ -91,13 +91,14 @@ class ImbController extends Controller
 
 
     public function management()
-    {
-        $items = Imb::orderBy('nomor_dp', 'asc')->paginate(20); // Membatasi 20 data per halaman
-        // $items = Imb::latest()->paginate(23);
-        $title = "Data IMB";
+    {$items = Imb::orderBy('tahun', 'asc') // Urutkan berdasarkan 'tahun' terlebih dahulu
+        ->orderBy('nomor_dp', 'asc') // Kemudian urutkan berdasarkan 'nomor_dp'
+        ->paginate(20); // Membatasi 20 data per halaman
+$title = "Data IMB";
 
-        // Mengirim data ke view
-        return view('management', compact('items', 'title'));
+// Mengirim data ke view
+return view('management', compact('items', 'title'));
+
     }
 
     public function show($name)

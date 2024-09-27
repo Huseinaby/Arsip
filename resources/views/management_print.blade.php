@@ -35,7 +35,7 @@
         window.print();
     };
         window.onafterprint = function() {
-            window.close();
+            window.location.href = "{{ route('management') }}";
     };
 </script>
 

@@ -339,9 +339,7 @@
             // Periksa apakah file PDF dapat dimuat
             win.onload = function() {
                 win.print();
-                win.onafterprint = function() {
-                    win.close();
-                };
+                
             };
 
             win.onerror = function() {
