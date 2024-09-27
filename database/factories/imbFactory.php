@@ -23,7 +23,7 @@ class imbFactory extends Factory
             'lokasi' => $this->faker->city,
             'box' => $this->faker->randomDigitNotNull,
             'keterangan' => $this->faker->sentence,
-            'tahun' => $this->faker->year,
+            'tahun' => $this->faker->numberBetween(1999,2001),
             'imbs' =>$this->faker->name,
         ];
     }
