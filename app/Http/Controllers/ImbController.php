@@ -11,17 +11,18 @@ class ImbController extends Controller
 {
 
 
+    // SIMPAN
     public function store(Request $request)
     {
         $validateData = $request->validate([
             'nomor_dp' => 'required|numeric',
-            'nama' => 'required',
-            'alamat' => 'required',
-            'lokasi' => 'required',
-            'box' => 'required',
+            'nama' => 'nullable',
+            'alamat' => 'nullable',
+            'lokasi' => 'nullable',
+            'box' => 'nullable',
             'keterangan' => 'nullable',
-            'tahun' => 'required',
-            'imbs' => 'required' // Field untuk file PDF yang digabungkan
+            'tahun' => 'nullable',
+            'imbs' => 'nullable' // Field untuk file PDF yang digabungkan
         ]);
 
         // Decode base64 to store as file
@@ -40,6 +41,8 @@ class ImbController extends Controller
         return redirect()->route('management')->with('success', 'Data IMB berhasil ditambahkan !!');
     }
 
+
+    // Hapus
     public function destroy($id_imb)
     {
         $imb = Imb::where('id', $id_imb)->firstOrFail();
@@ -49,6 +52,7 @@ class ImbController extends Controller
         return redirect()->route('home')->with('success', 'Data IMB berhasil dihapus !!');
     }
 
+    // Update
     public function update(Request $request, $id_imb)
     {
         $imb = Imb::where('id', $id_imb)->firstOrFail();
@@ -84,14 +88,17 @@ class ImbController extends Controller
         return redirect()->route('management')->with('success', 'IMB Berhasil dirubah!!');
     }
 
-    public function management()
-    {
-        $items = Imb::orderBy('nomor_dp', 'asc')->paginate(23); // Membatasi 25 data per halaman
-        // $items = Imb::latest()->paginate(23);
-        $title = "Data IMB";
 
-        // Mengirim data ke view
-        return view('management', compact('items', 'title'));
+
+    public function management()
+    {$items = Imb::orderBy('tahun', 'asc') // Urutkan berdasarkan 'tahun' terlebih dahulu
+        ->orderBy('nomor_dp', 'asc') // Kemudian urutkan berdasarkan 'nomor_dp'
+        ->paginate(20); // Membatasi 20 data per halaman
+$title = "Data IMB";
+
+// Mengirim data ke view
+return view('management', compact('items', 'title'));
+
     }
 
     public function show($name)
@@ -102,16 +109,34 @@ class ImbController extends Controller
         ]);
     }
 
-    public function printAll()
+    public function printAll(Request $request)
     {
-        // Mengambil semua data tanpa pagination
-        $items = imb::all();
+        $query = $request->input('query');
+        $field = $request->input('field');
 
-        $title = "Cetak Semua Data IMB";
+        // Pastikan $field tidak kosong dan valid
+        if ($field && $query) {
+            // Lakukan pencarian dengan filter yang diberikan
+            $items = Imb::where($field, 'like', '%' . $query . '%')->orderBy('nomor_dp', 'asc')->get();
+        } elseif ($request->filled('query')) {
+            // Jika hanya query yang terisi, cari semua data berdasarkan query
+            $items = Imb::where('nomor_dp', 'like', '%' . $query . '%')
+                ->orWhere('nama', 'like', '%' . $query . '%')
+                ->orWhere('alamat', 'like', '%' . $query . '%')
+                ->orWhere('lokasi', 'like', '%' . $query . '%')
+                ->orWhere('box', 'like', '%' . $query . '%')
+                ->orWhere('keterangan', 'like', '%' . $query . '%')
+                ->orWhere('tahun', 'like', '%' . $query . '%')
+                ->orderBy('nomor_dp', 'asc')->get(); // Gunakan get() untuk mengambil semua data
+        } else {
+            // Jika tidak ada filter, kembalikan semua data
+            $items = Imb::orderBy('nomor_dp', 'asc')->get();
+        }
 
         // Menampilkan view yang sudah diformat untuk print
-        return view('management_print', compact('items', 'title'));
+        return view('management_print', compact('items'));
     }
+
 
     public function search(Request $request)
     {
@@ -126,7 +151,7 @@ class ImbController extends Controller
 
         // Lakukan pencarian berdasarkan field yang dipilih
         if ($request->filled('query') && $request->filled('field')) {
-            $items = Imb::where($field, 'like', '%' . $query . '%')->paginate();
+            $items = Imb::where($field, 'like', '%' . $query . '%')->orderBy('nomor_dp', 'asc')->paginate()->withQueryString();
         } elseif ($request->filled('query')) {
             // Jika hanya query yang terisi, cari semua data
             $items = Imb::where('nomor_dp', 'like', '%' . $query . '%')
@@ -136,8 +161,8 @@ class ImbController extends Controller
                 ->orWhere('box', 'like', '%' . $query . '%')
                 ->orWhere('keterangan', 'like', '%' . $query . '%')
                 ->orWhere('tahun', 'like', '%' . $query . '%')
-                ->paginate();
-        } 
+                ->orderBy('nomor_dp', 'asc')->paginate()->withQueryString();
+        }
 
         $title = 'Data IMB';
 

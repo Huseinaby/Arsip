@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('imbs', function (Blueprint $table) {
             $table->id();
-            $table->integer('nomor_dp');
-            $table->string('nama');
-            $table->text('alamat');
-            $table->text('lokasi');
-            $table->string('box');
+            $table->integer('nomor_dp')->nullable();
+            $table->string('nama')->nullable();
+            $table->text('alamat')->nullable();
+            $table->text('lokasi')->nullable();
+            $table->string('box')->nullable();
             $table->text('keterangan')->nullable();
-            $table->year('tahun');
-            $table->string('imbs');
+            $table->year('tahun')->nullable();
+            $table->string('imbs')->nullable();
             $table->timestamps();
         });
     }
