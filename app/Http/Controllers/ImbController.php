@@ -49,9 +49,10 @@ class ImbController extends Controller
         return redirect()->route('home')->with('success', 'Data IMB berhasil dihapus !!');
     }
 
-    public function update(Request $request, $id_imb){
+    public function update(Request $request, $id_imb)
+    {
         $imb = Imb::where('id', $id_imb)->firstOrFail();
-        
+
         $validateData = $request->validate([
             'nomor_dp' => 'required|numeric',
             'nama' => 'required',
@@ -62,8 +63,8 @@ class ImbController extends Controller
             'tahun' => 'required',
         ]);
 
-        if($request->filled('imbs')){
-            if($imb->imbs){
+        if ($request->filled('imbs')) {
+            if ($imb->imbs) {
                 Storage::delete('storage/app/public/imbs/' . $imb->imbs);
             }
 
@@ -72,8 +73,8 @@ class ImbController extends Controller
 
             $fileName = 'imb_' . $request['nomor_dp'] . '_' . $request['tahun'] . '.pdf';
             $validateData['imbs'] = $fileName;
-    
-            Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);            
+
+            Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);
         } else {
             $validateData['imbs'] = $imb->imbs;
         }
@@ -113,33 +114,33 @@ class ImbController extends Controller
     }
 
     public function search(Request $request)
-{
-    $query = $request->input('query');
-    $field = $request->input('field');
+    {
+        $query = $request->input('query');
+        $field = $request->input('field');
 
-    // Cek jika field dan query kosong
-    if ((!$request->filled('query') && !$request->filled('field')) || ((!$request->filled('query') && $request->filled('field')))) {
-        // Jika tidak ada isian query atau field, kembali ke halaman management
-        return redirect()->route('management'); // Ganti 'management' dengan nama rute yang sesuai
+        // Cek jika field dan query kosong
+        if ((!$request->filled('query') && !$request->filled('field')) || ((!$request->filled('query') && $request->filled('field')))) {
+            // Jika tidak ada isian query atau field, kembali ke halaman management
+            return redirect()->route('management'); // Ganti 'management' dengan nama rute yang sesuai
+        }
+
+        // Lakukan pencarian berdasarkan field yang dipilih
+        if ($request->filled('query') && $request->filled('field')) {
+            $items = Imb::where($field, 'like', '%' . $query . '%')->paginate();
+        } elseif ($request->filled('query')) {
+            // Jika hanya query yang terisi, cari semua data
+            $items = Imb::where('nomor_dp', 'like', '%' . $query . '%')
+                ->orWhere('nama', 'like', '%' . $query . '%')
+                ->orWhere('alamat', 'like', '%' . $query . '%')
+                ->orWhere('lokasi', 'like', '%' . $query . '%')
+                ->orWhere('box', 'like', '%' . $query . '%')
+                ->orWhere('keterangan', 'like', '%' . $query . '%')
+                ->orWhere('tahun', 'like', '%' . $query . '%')
+                ->paginate();
+        } 
+
+        $title = 'Data IMB';
+
+        return view('management', compact('items', 'title'));
     }
-
-    // Lakukan pencarian berdasarkan field yang dipilih
-    if ($request->filled('query') && $request->filled('field')) {
-        $items = Imb::where($field, 'like', '%' . $query . '%')->paginate();
-    } elseif ($request->filled('query')) {
-        // Jika hanya query yang terisi, cari semua data
-        $items = Imb::where('nomor_dp', 'like', '%' . $query . '%')
-            ->orWhere('nama', 'like', '%' . $query . '%')
-            ->orWhere('alamat', 'like', '%' . $query . '%')
-            ->orWhere('lokasi', 'like', '%' . $query . '%')
-            ->orWhere('box', 'like', '%' . $query . '%')
-            ->orWhere('keterangan', 'like', '%' . $query . '%')
-            ->orWhere('tahun', 'like', '%' . $query . '%')
-            ->paginate();
-    }
-
-    $title = 'Data IMB';
-
-    return view('management', compact('items', 'title'));
-}
 }
