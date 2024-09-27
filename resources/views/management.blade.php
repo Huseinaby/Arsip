@@ -149,14 +149,14 @@
 
             </tr>
             @endforeach
+
             <!-- Edit Form  -->
-            @foreach ($items as $item )
             <div id="editModal"
                 class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-800 bg-opacity-50">
                 <div class="bg-gray-100 p-6 rounded-lg shadow-lg border">
                     <h2 class="text-lg font-bold mb-4">Edit Data</h2>
 
-                    <form action="/update-item/{{ $item->id }}" method="POST">
+                    <form id="form_id" action="" method="POST">
                         @method('put');
                         @csrf
                         <input type="hidden" id="edit_id" name="id">
@@ -250,7 +250,6 @@
                     </form>
                 </div>
             </div>
-            @endforeach
         </tbody>
     </table>
     <div>
