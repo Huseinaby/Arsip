@@ -15,13 +15,13 @@ class ImbController extends Controller
     {
         $validateData = $request->validate([
             'nomor_dp' => 'required|numeric',
-            'nama' => 'required',
-            'alamat' => 'required',
-            'lokasi' => 'required',
-            'box' => 'required',
+            'nama' => 'nullable',
+            'alamat' => 'nullable',
+            'lokasi' => 'nullable',
+            'box' => 'nullable',
             'keterangan' => 'nullable',
-            'tahun' => 'required',
-            'imbs' => 'required' // Field untuk file PDF yang digabungkan
+            'tahun' => 'nullable',
+            'imbs' => 'nullable' // Field untuk file PDF yang digabungkan
         ]);
 
         // Decode base64 to store as file
@@ -123,6 +123,8 @@ class ImbController extends Controller
         return redirect()->route('management'); // Ganti 'management' dengan nama rute yang sesuai
     }
 
+    
+
     // Lakukan pencarian berdasarkan field yang dipilih
     if ($request->filled('query') && $request->filled('field')) {
         $items = Imb::where($field, 'like', '%' . $query . '%')->paginate();
@@ -136,6 +138,8 @@ class ImbController extends Controller
             ->orWhere('keterangan', 'like', '%' . $query . '%')
             ->orWhere('tahun', 'like', '%' . $query . '%')
             ->paginate();
+    } else{
+        $items = null;
     }
 
     $title = 'Data IMB';

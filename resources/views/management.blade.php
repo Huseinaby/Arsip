@@ -152,6 +152,8 @@
 
                     </tr>
                 @endforeach
+
+                
                  <!-- Edit Form  -->
                  <div id="editModal"
                  class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-800 bg-opacity-50">
