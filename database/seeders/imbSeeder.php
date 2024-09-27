@@ -14,6 +14,6 @@ class imbSeeder extends Seeder
     public function run(): void
     {
         imb::truncate();
-        imb::factory()->count(100)->create();
+        imb::factory()->count(40)->create();
     }
 }

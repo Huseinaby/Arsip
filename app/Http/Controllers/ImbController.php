@@ -104,12 +104,10 @@ class ImbController extends Controller
     public function printAll()
     {
         // Mengambil semua data tanpa pagination
-        $items = imb::all();
-
-        $title = "Cetak Semua Data IMB";
+        $items = imb::orderBy('nomor_dp', 'asc')->get();
 
         // Menampilkan view yang sudah diformat untuk print
-        return view('management_print', compact('items', 'title'));
+        return view('management_print', compact('items'));
     }
 
     public function search(Request $request)
