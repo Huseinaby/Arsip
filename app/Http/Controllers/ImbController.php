@@ -91,13 +91,14 @@ class ImbController extends Controller
 
 
     public function management()
-    {$items = Imb::orderBy('tahun', 'asc') // Urutkan berdasarkan 'tahun' terlebih dahulu
-        ->orderBy('nomor_dp', 'asc') // Kemudian urutkan berdasarkan 'nomor_dp'
-        ->paginate(20); // Membatasi 20 data per halaman
-$title = "Data IMB";
+    {
+        $items = Imb::orderBy('tahun', 'asc') // Urutkan berdasarkan 'tahun' terlebih dahulu
+            ->orderBy('nomor_dp', 'asc') // Kemudian urutkan berdasarkan 'nomor_dp'
+            ->paginate(20); // Membatasi 20 data per halaman
+        $title = "Data IMB";
 
-// Mengirim data ke view
-return view('management', compact('items', 'title'));
+        // Mengirim data ke view
+        return view('management', compact('items', 'title'));
 
     }
 
@@ -117,7 +118,11 @@ return view('management', compact('items', 'title'));
         // Pastikan $field tidak kosong dan valid
         if ($field && $query) {
             // Lakukan pencarian dengan filter yang diberikan
-            $items = Imb::where($field, 'like', '%' . $query . '%')->orderBy('nomor_dp', 'asc')->get();
+            $items = Imb::where($field, 'like', '%' . $query . '%')
+                ->orderBy('tahun', 'asc')      
+                ->orderBy('nomor_dp', 'asc')   
+                ->get();
+
         } elseif ($request->filled('query')) {
             // Jika hanya query yang terisi, cari semua data berdasarkan query
             $items = Imb::where('nomor_dp', 'like', '%' . $query . '%')
@@ -127,10 +132,10 @@ return view('management', compact('items', 'title'));
                 ->orWhere('box', 'like', '%' . $query . '%')
                 ->orWhere('keterangan', 'like', '%' . $query . '%')
                 ->orWhere('tahun', 'like', '%' . $query . '%')
-                ->orderBy('nomor_dp', 'asc')->get(); // Gunakan get() untuk mengambil semua data
+                ->orderBy('nomor_dp', 'asc')->get(); 
         } else {
-            // Jika tidak ada filter, kembalikan semua data
-            $items = Imb::orderBy('nomor_dp', 'asc')->get();
+            $items = Imb::orderBy('tahun', 'asc')      
+                ->orderBy('nomor_dp', 'asc')->get();
         }
 
         // Menampilkan view yang sudah diformat untuk print
