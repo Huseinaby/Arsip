@@ -85,7 +85,7 @@ class ImbController extends Controller
 
         $imb->update($validateData);
 
-        return redirect()->route('management')->with('success', 'IMB Berhasil dirubah!!');
+        return redirect()->route('input')->with('success', 'IMB Berhasil dirubah!!');
     }
 
 
