@@ -22,7 +22,7 @@ Route::get('/inputArsip', function() {
 
 
 
-Route::post('/inputArsip', [ImbController::class, 'store'])->middleware('auth');
+Route::post('/inputArsip', [ImbController::class, 'store'])->middleware('auth')->name('input');
 Route::get('/management', [ImbController::class, 'management'])->middleware('auth')->name('management');
 Route::get('/management/search', [ImbController::class, 'search'])->name('management.search');
 

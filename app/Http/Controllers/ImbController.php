@@ -38,7 +38,7 @@ class ImbController extends Controller
 
         Imb::create($validateData);
 
-        return redirect()->route('management')->with('success', 'Data IMB berhasil ditambahkan !!');
+        return redirect()->route('input')->with('success', 'Data IMB berhasil ditambahkan !!');
     }
 
 
