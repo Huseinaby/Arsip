@@ -6,7 +6,7 @@
           <div class="mb-6 md:mb-0 flex items-center">
               <a href="" class="flex items-center">
                   <img src="{{ asset('img/dispersip_logo.png') }}" class="h-10 me-3" alt="DISPERSIP Logo" />
-                  <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">DISPERSIP</span>
+                  <span class="self-center text-2xl font-semibold whitespace-nowrap text-white"></span>
               </a>
           </div>
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
