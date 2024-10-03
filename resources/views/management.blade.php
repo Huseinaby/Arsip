@@ -166,19 +166,16 @@
                             <div class="relative z-0 w-full mb-5 group">
                                 <input type="text" name="nomor_dp" id="edit_nomor_dp"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="{{ $item->nomor_dp }}" required />
+                                    placeholder=" " value="" required />
                                 <label for="floating_nomor_dp"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nomor
                                     DP</label>
-                                @if ($errors->has('nomor_dp'))
-                                <p class="text-red-500 text-xs mt-2">{{ $errors->first('nomor_dp') }}</p>
-                                @endif
                             </div>
 
                             <div class="relative z-0 w-full mb-5 group">
                                 <input type="text" name="nama" id="edit_nama"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="{{ $item->nama }}" required />
+                                    placeholder=" " value="" required />
                                 <label for="floating_nama"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nama</label>
                             </div>
@@ -186,7 +183,7 @@
                             <div class="relative z-0 w-full mb-5 group">
                                 <input type="text" name="alamat" id="edit_alamat"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="{{ $item->alamat }}" required />
+                                    placeholder=" " value="" required />
                                 <label for="floating_alamat"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Alamat</label>
                             </div>
@@ -194,7 +191,7 @@
                             <div class="relative z-0 w-full mb-5 group">
                                 <input type="text" name="lokasi" id="edit_lokasi"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="{{ $item->lokasi }}" required />
+                                    placeholder=" " value="" required />
                                 <label for="floating_lokasi"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Lokasi</label>
                             </div>
@@ -202,7 +199,7 @@
                             <div class="relative z-0 w-full mb-5 group">
                                 <input type="text" name="box" id="edit_box"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="{{ $item->box }}" required />
+                                    placeholder=" " value="" required />
                                 <label for="floating_box"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Box</label>
                             </div>
@@ -210,7 +207,7 @@
                             <div class="relative z-0 w-full mb-5 group">
                                 <input type="text" name="keterangan" id="edit_keterangan"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="{{ $item->keterangan }}" />
+                                    placeholder=" " value="" />
                                 <label for="floating_keterangan"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Keterangan</label>
                             </div>
@@ -218,7 +215,7 @@
                             <div class="relative z-0 w-full mb-5 group">
                                 <input type="text" name="tahun" id="edit_tahun"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="{{ $item->tahun }}" required />
+                                    placeholder=" " value="" required />
                                 <label for="floating_tahun"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tahun</label>
                             </div>
@@ -230,7 +227,7 @@
                                 IMB</label>
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="multiple_files" name="imbs[]" type="file" value="{{ $item->imbs }}" multiple
+                                id="multiple_files" name="imbs[]" type="file" value="" multiple
                                 accept=".pdf">
                             <input type="hidden" id="merge_imbs" name="imbs">
                         </div>
