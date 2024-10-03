@@ -30,7 +30,7 @@ class ImbController extends Controller
         $pdfContent = base64_decode(preg_replace('#^data:application/pdf;base64,#i', '', $base64Pdf));
 
         // Simpan file ke storage Laravel (atau folder tertentu)
-        $fileName = 'imb_' . $request['nomor_dp'] . '_' . $request['tahun'] . '.pdf';
+        $fileName = 'imb_' . $request['nomor_dp'] . '_' . $request['tahun'] . '_' . time() . '.pdf';
         $validateData['imbs'] = $fileName;
 
         Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);
@@ -38,7 +38,7 @@ class ImbController extends Controller
 
         Imb::create($validateData);
 
-        return redirect()->route('management')->with('success', 'Data IMB berhasil ditambahkan !!');
+        return redirect()->route('input')->with('success', 'Data IMB berhasil ditambahkan !!');
     }
 
 
@@ -47,9 +47,13 @@ class ImbController extends Controller
     {
         $imb = Imb::where('id', $id_imb)->firstOrFail();
 
+        if($imb->imbs){
+            Storage::delete('public/imbs'. $imb->imbs);
+        }
+
         $imb->delete();
 
-        return redirect()->route('home')->with('success', 'Data IMB berhasil dihapus !!');
+        return redirect()->route('management')->with('success', 'Data IMB berhasil dihapus !!');
     }
 
     // Update
@@ -75,7 +79,7 @@ class ImbController extends Controller
             $base64Pdf = $request->input('imbs');
             $pdfContent = base64_decode(preg_replace('#^data:application/pdf;base64,#i', '', $base64Pdf));
 
-            $fileName = 'imb_' . $request['nomor_dp'] . '_' . $request['tahun'] . '.pdf';
+            $fileName = 'imb_' . $request['nomor_dp'] . '_' . $request['tahun'] . '_'.time() .'.pdf';
             $validateData['imbs'] = $fileName;
 
             Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);

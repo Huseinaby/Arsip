@@ -18,7 +18,7 @@ Route::get('/inputArsip', function() {
     return view('form',[
         'title'=>'Form Input IMB'
     ]);
-})->middleware('auth');
+})->name('input')->middleware('auth');
 
 
 
@@ -37,6 +37,8 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/imb/print-all', [ImbController::class, 'printAll'])->name('imb.printAll');
 
 Route::put('/update-item/{id}', [ImbController::class, 'update']);
+
+Route::get('/delete/{id}', [ImbController::class, 'destroy']);
 
 
 // web.php// web.php

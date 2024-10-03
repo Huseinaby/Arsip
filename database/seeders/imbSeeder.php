@@ -11,9 +11,9 @@ class imbSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-        imb::truncate();
-        imb::factory()->count(2013)->create();
-    }
+    // public function run(): void
+    // {
+    //     imb::truncate();
+    //     imb::factory()->count(2013)->create();
+    // }
 }
