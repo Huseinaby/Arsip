@@ -18,7 +18,7 @@ Route::get('/inputArsip', function() {
     return view('form',[
         'title'=>'Form Input IMB'
     ]);
-})->middleware('auth');
+})->middleware('auth')->name('input');
 
 
 
@@ -26,7 +26,6 @@ Route::post('/inputArsip', [ImbController::class, 'store'])->middleware('auth')-
 Route::get('/management', [ImbController::class, 'management'])->middleware('auth')->name('management');
 Route::get('/management/search', [ImbController::class, 'search'])->name('management.search');
 
-Route::get('/management', [ImbController::class, 'management'])->name('management');
 Route::get('/lihat/{name}', [ImbController::class, 'show']);
 
 

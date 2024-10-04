@@ -1,4 +1,4 @@
-<nav class="bg-gray-800 sticky top-0 z-50">
+<nav class="bg-gray-700 sticky top-0 z-50">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <img src="{{ asset('img/dispersip_logo.png') }}" class="h-8" alt="Flowbite Logo" />
         <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
@@ -8,20 +8,20 @@
             </svg>
         </button>
         <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-            <ul class="flex flex-col font-medium mt-4 rounded-lg bg-gray-800 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
-                <li>
-                    <a href="/dashboard" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ request()->is('dashboard') ? 'text-blue-700' : '' }}">Home</a>
+            <ul class="flex flex-col font-medium mt-4 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+                <li >
+                    <a href="{{ Route('home') }}" class="block p-3 md:p-2 text-white rounded hover:bg-gray-500 hover:text-blue-900 md:hover:bg-transparent md:border-0 md:hover:text-blue-900 md:hover:bg-white   {{ Route::is('home')? 'text-blue-900 bg-white' : '' }}">Home</a>
                 </li>
                 <li>
-                    <a href="/inputArsip" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ request()->is('inputArsip') ? 'text-blue-700' : '' }}">Input</a>
+                    <a href="{{ Route('input') }}" class="block p-3 md:p-2 text-white rounded hover:bg-gray-500 hover:text-blue-900 md:hover:bg-transparent md:border-0 md:hover:text-blue-900 md:hover:bg-white   {{ Route::is('input')? 'text-blue-900 bg-white' : '' }}">Input</a>
                 </li>
                 <li>
-                    <a href="/management" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ request()->is('management') ? 'text-blue-700' : '' }}">Managemen</a>
+                    <a href="{{ Route('management') }}" class="block p-3 md:p-2 text-white rounded hover:bg-gray-500 hover:text-blue-900 md:hover:bg-transparent md:border-0 md:hover:text-blue-900 md:hover:bg-white   {{ Route::is('management')? 'text-blue-900 bg-white' : '' }}">Managemen</a>
                 </li>
                 <li>
                     <form action="/logout" method="POST">
                         @csrf
-                        <button type="submit" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ request()->is('logout') ? 'text-blue-800' : '' }}">Logout</button>
+                        <button type="submit" class="block p-3 md:p-2 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Route::is('logout') ? 'text-blue-900' : '' }}">Logout</button>
                     </form>
                 </li>
                 
