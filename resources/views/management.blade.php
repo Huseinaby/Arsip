@@ -157,7 +157,7 @@
                     <h2 class="text-lg font-bold mb-4">Edit Data</h2>
 
                     <form id="form_id" action="" method="POST">
-                        @method('put');
+                        @method('put')
                         @csrf
                         <input type="hidden" id="edit_id" name="id">
 
