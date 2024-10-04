@@ -48,7 +48,8 @@ class ImbController extends Controller
         $imb = Imb::where('id', $id_imb)->firstOrFail();
 
         if($imb->imbs){
-            Storage::delete('public/imbs'. $imb->imbs);
+            // dd($imb->imbs); 
+            Storage::disk('public')->delete('imbs/' . $imb->imbs);
         }
 
         $imb->delete();
@@ -73,7 +74,9 @@ class ImbController extends Controller
 
         if ($request->filled('imbs')) {
             if ($imb->imbs) {
-                Storage::delete('storage/app/public/imbs/' . $imb->imbs);
+                // Storage::delete('storage/app/public/imbs/' . $imb->imbs);
+                dd($imb->imbs);
+                Storage::disk('public')->delete('imbs/' . $imb->imbs);
             }
 
             $base64Pdf = $request->input('imbs');
