@@ -48,7 +48,7 @@ class ImbController extends Controller
         $imb = Imb::where('id', $id_imb)->firstOrFail();
 
         if ($imb->imbs) {
-            // dd($imb->imbs); 
+        // dd($imb->imbs); 
             Storage::disk('public')->delete('imbs/' . $imb->imbs);
         }
 
@@ -146,7 +146,7 @@ class ImbController extends Controller
         $imb->update($validateData);
 
         // Redirect dengan pesan <sukse></sukse>s
-        return redirect()->route('management')->with('success', 'IMB Berhasil dirubah!!');
+        return redirect()->back()->with('success', 'IMB Berhasil dirubah!!');
     }
 
 
