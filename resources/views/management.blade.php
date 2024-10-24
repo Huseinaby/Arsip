@@ -138,11 +138,11 @@
 
                 </td>
                 <td class="px-6 py-4">
-                    <a href="/delete/{{$item->id}}">
+                    <!-- delete button -->
+                    <a href="javascript:void(0)" class="delete-button" data-id="{{$item->id}}">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z" clip-rule="evenodd" />
                         </svg>
-
                     </a>
                 </td>
                 <td class="px-6 py-4 hidden-print">
@@ -251,11 +251,13 @@
                                 Gabungkan PDF
                             </button>
                             <button type="submit"
-                                class="ml-2 text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded">Save</button>
+                                class="ml-2 text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded" id="save-button">Save</button>
                         </div>
                     </form>
                 </div>
             </div>
+
+
         </tbody>
     </table>
     <div>
@@ -271,13 +273,49 @@
 
 
 <script>
+    // untuk delete button
+    document.querySelectorAll('.delete-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const itemId = button.getAttribute('data-id'); //ambil id dari item 
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/delete/${itemId}`;
+                }
+            })
+        })
+    })
+
+
+    // Untuk edit
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('mergeButton').addEventListener('click', async () => {
             const files = document.getElementById('multiple_files').files;
 
             if (files.length === 0) {
-                alert('Pilih setidaknya satu file PDF.');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses!',
+                    text: 'File PDF berhasil digabungkan dan siap untuk disubmit.',
+                    confirmButtonText: 'OK'
+                });
                 return;
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Data berhasil disimpan!',
+                    confirmButtonText: 'OK'
+                })
             }
 
             const {
@@ -306,6 +344,31 @@
                 alert('File PDF berhasil digabungkan dan siap untuk disubmit.');
             };
         });
+    })
+
+    // save button di edit
+    document.getElementById("form_id").addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // const files = document.getElementById('multiple_files').files;
+        // if (files.length === 0) {
+        //     Swal.fire({
+        //         icon: 'warning',
+        //         title: 'Peringatan!',
+        //         text: 'Form tidak boleh kosong.',
+        //         confirmButtonText: 'OK'
+        //     });
+        //     return;
+
+        // }
+
+        // Tampilkan sweet alert ketika berhasil
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: 'Data berhasil disimpan!',
+            confirmButtonText: 'OK'
+        })
     })
 
 
@@ -356,10 +419,7 @@
 
 
 
-    function closeModal() {
 
-        document.getElementById('editModal').classList.add('hidden');
-    }
 
 
     // print 
@@ -375,8 +435,13 @@
     }
 
 
+    let currentScrollPosition = 0;
 
     function openEditModal(item) {
+        // Simpan posisi scroll saat ini
+        currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Isi form dengan data yang dikirimkan
         document.getElementById('form_id').action = `/update-item/${item.id}`;
         document.getElementById('edit_id').value = item.id;
         document.getElementById('edit_nomor_dp').value = item.nomor_dp;
@@ -386,7 +451,24 @@
         document.getElementById('edit_keterangan').value = item.keterangan;
         document.getElementById('edit_box').value = item.box;
         document.getElementById('edit_tahun').value = item.tahun;
+
+        // Tampilkan modal
         document.getElementById('editModal').classList.remove('hidden');
+
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${currentScrollPosition}px`;
+    }
+
+    function closeModal() {
+        // Sembunyikan modal
+        document.getElementById('editModal').classList.add('hidden');
+
+        // Aktifkan kembali scroll pada body
+        document.body.style.overflow = 'auto';
+
+        // Kembalikan posisi scroll ke posisi yang disimpan sebelumnya
+        window.scrollTo(0, currentScrollPosition);
     }
 </script>
 

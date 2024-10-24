@@ -6,6 +6,8 @@ use App\Models\Imb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Console\Input\Input;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Route;
 
 class ImbController extends Controller
 {
@@ -38,7 +40,7 @@ class ImbController extends Controller
 
         Imb::create($validateData);
 
-        return redirect()->route('input')->with('success', 'Data IMB berhasil ditambahkan !!');
+        return redirect()->route('management')->with('success', 'Data IMB berhasil ditambahkan !!');
     }
 
 
@@ -48,7 +50,7 @@ class ImbController extends Controller
         $imb = Imb::where('id', $id_imb)->firstOrFail();
 
         if ($imb->imbs) {
-        // dd($imb->imbs); 
+            // dd($imb->imbs); 
             Storage::disk('public')->delete('imbs/' . $imb->imbs);
         }
 
