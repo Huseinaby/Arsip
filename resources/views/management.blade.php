@@ -356,10 +356,6 @@
 
 
 
-    function closeModal() {
-
-        document.getElementById('editModal').classList.add('hidden');
-    }
 
 
     // print 
@@ -374,9 +370,12 @@
         }
     }
 
-
+    let currentScrollPosition = 0;
 
     function openEditModal(item) {
+        // Simpan posisi scroll saat ini
+        currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
         document.getElementById('form_id').action = `/update-item/${item.id}`;
         document.getElementById('edit_id').value = item.id;
         document.getElementById('edit_nomor_dp').value = item.nomor_dp;
@@ -386,7 +385,24 @@
         document.getElementById('edit_keterangan').value = item.keterangan;
         document.getElementById('edit_box').value = item.box;
         document.getElementById('edit_tahun').value = item.tahun;
+
         document.getElementById('editModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${currentScrollPosition}px`;
+
+    }
+
+    function closeModal() {
+
+        document.getElementById('editModal').classList.add('hidden');
+        // Aktifkan kembali scroll pada body
+        document.body.style.overflow = 'auto';
+
+        // Kembalikan posisi scroll ke posisi yang disimpan sebelumnya
+        window.scrollTo(0, currentScrollPosition);
+
+
     }
 </script>
 
