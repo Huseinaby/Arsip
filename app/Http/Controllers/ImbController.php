@@ -46,15 +46,17 @@ class ImbController extends Controller
     public function destroy($id_imb)
     {
         $imb = Imb::where('id', $id_imb)->firstOrFail();
+        // Ambil semua parameter query string saat ini
+        $queryString = request()->query();
 
         if ($imb->imbs) {
-        // dd($imb->imbs); 
+            // dd($imb->imbs); 
             Storage::disk('public')->delete('imbs/' . $imb->imbs);
         }
 
         $imb->delete();
 
-        return redirect()->route('management')->with('success', 'Data IMB berhasil dihapus !!');
+        return redirect()->route('management', $queryString)->with('success', 'Data IMB berhasil dihapus !!');
     }
 
     // Update
