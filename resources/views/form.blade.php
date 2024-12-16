@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('container')
 @if ($errors->any())
-<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+<div id="alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
     <strong class="font-bold">Oops!</strong>
     <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
 </div>
@@ -25,6 +25,9 @@
             placeholder=" " value="{{ old('nama') }}" />
         <label for="floating_nama"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nama</label>
+        @if ($errors->has('nama'))
+        <p class="text-red-500 text-xs mt-2">{{ $errors->first('nama') }}</p>
+        @endif
     </div>
     <div class="relative z-0 w-full mb-5 group">
         <input type="text" name="alamat" id="floating_alamat"
@@ -32,6 +35,9 @@
             placeholder=" " value="{{ old('alamat') }}" />
         <label for="floating_alamat"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Alamat</label>
+            @if ($errors->has('alamat'))
+        <p class="text-red-500 text-xs mt-2">{{ $errors->first('alamat') }}</p>
+        @endif
     </div>
     <div class="relative z-0 w-full mb-5 group">
         <input type="text" name="lokasi" id="floating_lokasi"
@@ -39,6 +45,9 @@
             placeholder=" " value="{{ old('lokasi') }}" />
         <label for="floating_lokasi"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Lokasi</label>
+            @if ($errors->has('lokasi'))
+        <p class="text-red-500 text-xs mt-2">{{ $errors->first('lokasi') }}</p>
+        @endif
     </div>
     <div class="relative z-0 w-full mb-5 group">
         <input type="tetxt" name="box" id="floating_box"
@@ -46,6 +55,9 @@
             placeholder=" " value="{{ old('box') }}" />
         <label for="floating_box"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Box</label>
+            @if ($errors->has('box'))
+        <p class="text-red-500 text-xs mt-2">{{ $errors->first('box') }}</p>
+        @endif
     </div>
     <div class="relative z-0 w-full mb-5 group">
         <input type="text" name="keterangan" id="floating_keterangan"
@@ -53,6 +65,9 @@
             placeholder=" " value="{{ old('keterangan') }}" />
         <label for="floating_keterangan"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Keterangan</label>
+            @if ($errors->has('keterangan'))
+        <p class="text-red-500 text-xs mt-2">{{ $errors->first('keterangan') }}</p>
+        @endif
     </div>
     <div class="relative z-0 w-full mb-5 group">
         <input type="text" name="tahun" id="floating_tahun"
@@ -60,6 +75,9 @@
             placeholder=" " value="{{ old('tahun') }}" />
         <label for="floating_tahun"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tahun</label>
+            @if ($errors->has('tahun'))
+        <p class="text-red-500 text-xs mt-2">{{ $errors->first('tahun') }}</p>
+        @endif
     </div>
     <div class="mb-14">
 
@@ -81,6 +99,12 @@
 </form>
 
 <script>
+    let alert = document.getElementById('alert');
+    setTimeout(() => {
+        alert.style.display = 'none'
+    }, 3000);
+
+
     document.getElementById('mergeButton').addEventListener('click', async () => {
         const files = document.getElementById('multiple_files').files;
 
