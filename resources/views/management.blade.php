@@ -142,7 +142,6 @@
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z" clip-rule="evenodd" />
                         </svg>
-
                     </a>
                 </td>
                 <td class="px-6 py-4 hidden-print">
@@ -271,9 +270,8 @@
 
 
 <script>
-
-// var
-let currentScrollPosition = 0;
+    // var
+    let currentScrollPosition = 0;
 
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -331,6 +329,7 @@ let currentScrollPosition = 0;
         document.getElementById('dropdown').classList.toggle('hidden');
     });
 
+
     // lihat
     document.querySelectorAll('.print-pdf').forEach(function(element) {
         element.addEventListener('click', function(e) {
@@ -361,16 +360,15 @@ let currentScrollPosition = 0;
 
 
     // Hapus
-    function confirmDelete(id){
+    function confirmDelete(id) {
         const isConfirmed = confirm("Yakin Ingin Mengahapus?")
 
-        if(isConfirmed){
+        if (isConfirmed) {
             return true;
+        } else {
+            // Batal, tidak ada tindakan
+            return false;
         }
-        else {
-        // Batal, tidak ada tindakan
-        return false;
-    }
     }
 
 
@@ -388,56 +386,55 @@ let currentScrollPosition = 0;
     }
 
 
-function openEditModal(item) {
-    // Simpan posisi scroll saat ini ke localStorage
-    currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    localStorage.setItem('scrollPosition', currentScrollPosition);
+    function openEditModal(item) {
+        // Simpan posisi scroll saat ini ke localStorage
+        currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        localStorage.setItem('scrollPosition', currentScrollPosition);
 
-    // Isi form dengan data item
-    document.getElementById('form_id').action = `/update-item/${item.id}`;
-    document.getElementById('edit_id').value = item.id;
-    document.getElementById('edit_nomor_dp').value = item.nomor_dp;
-    document.getElementById('edit_nama').value = item.nama;
-    document.getElementById('edit_alamat').value = item.alamat;
-    document.getElementById('edit_lokasi').value = item.lokasi;
-    document.getElementById('edit_keterangan').value = item.keterangan;
-    document.getElementById('edit_box').value = item.box;
-    document.getElementById('edit_tahun').value = item.tahun;
+        // Isi form dengan data item
+        document.getElementById('form_id').action = `/update-item/${item.id}`;
+        document.getElementById('edit_id').value = item.id;
+        document.getElementById('edit_nomor_dp').value = item.nomor_dp;
+        document.getElementById('edit_nama').value = item.nama;
+        document.getElementById('edit_alamat').value = item.alamat;
+        document.getElementById('edit_lokasi').value = item.lokasi;
+        document.getElementById('edit_keterangan').value = item.keterangan;
+        document.getElementById('edit_box').value = item.box;
+        document.getElementById('edit_tahun').value = item.tahun;
 
-    // Tampilkan modal dan nonaktifkan scroll di body
-    document.getElementById('editModal').classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-    // Sembunyikan modal
-    document.getElementById('editModal').classList.add('hidden');
-
-    // Aktifkan kembali scroll di body
-    document.body.style.overflow = 'auto';
-
-    // Kembalikan posisi scroll ke posisi yang disimpan sebelumnya
-    const savedScrollPosition = localStorage.getItem('scrollPosition');
-    if (savedScrollPosition) {
-        window.scrollTo(0, parseInt(savedScrollPosition));
-        localStorage.removeItem('scrollPosition');
+        // Tampilkan modal dan nonaktifkan scroll di body
+        document.getElementById('editModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
     }
-}
 
-// Saat form disubmit, simpan posisi scroll ke localStorage
-document.getElementById('form_id').addEventListener('submit', function() {
-    localStorage.setItem('scrollPosition', currentScrollPosition);
-});
+    function closeModal() {
+        // Sembunyikan modal
+        document.getElementById('editModal').classList.add('hidden');
 
-// Saat halaman dimuat ulang, kembalikan posisi scroll dari localStorage
-window.addEventListener('load', function() {
-    const savedScrollPosition = localStorage.getItem('scrollPosition');
-    if (savedScrollPosition) {
-        window.scrollTo(0, parseInt(savedScrollPosition));
-        localStorage.removeItem('scrollPosition'); // Bersihkan setelah digunakan
+        // Aktifkan kembali scroll di body
+        document.body.style.overflow = 'auto';
+
+        // Kembalikan posisi scroll ke posisi yang disimpan sebelumnya
+        const savedScrollPosition = localStorage.getItem('scrollPosition');
+        if (savedScrollPosition) {
+            window.scrollTo(0, parseInt(savedScrollPosition));
+            localStorage.removeItem('scrollPosition');
+        }
     }
-});
 
+    // Saat form disubmit, simpan posisi scroll ke localStorage
+    document.getElementById('form_id').addEventListener('submit', function() {
+        localStorage.setItem('scrollPosition', currentScrollPosition);
+    });
+
+    // Saat halaman dimuat ulang, kembalikan posisi scroll dari localStorage
+    window.addEventListener('load', function() {
+        const savedScrollPosition = localStorage.getItem('scrollPosition');
+        if (savedScrollPosition) {
+            window.scrollTo(0, parseInt(savedScrollPosition));
+            localStorage.removeItem('scrollPosition'); // Bersihkan setelah digunakan
+        }
+    });
 </script>
 
 @endsection

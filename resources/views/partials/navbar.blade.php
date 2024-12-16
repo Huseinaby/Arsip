@@ -10,13 +10,13 @@
         <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
             <ul class="flex flex-col font-medium mt-4 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
                 <li >
-                    <a href="{{ Route('home') }}" class="block p-3 md:p-2 text-white rounded hover:bg-gray-500  md:hover:bg-transparent md:border-0  md:hover:bg-black   {{ Route::is('home') ? ' bg-black' : 'text-white' }}">Home</a>
+                    <a href="{{ Route('home') }}" class="block p-3 md:p-2 text-white rounded hover:bg-gray-500  md:hover:bg-transparent md:border-0  md:hover:bg-black   {{ Route::is('home') ? 'text-blue-700' : 'text-white' }}">Home</a>
                 </li>
                 <li>
-                    <a href="{{ Route('input') }}" class="block p-3 md:p-2 text-white rounded hover:bg-gray-500  md:hover:bg-transparent md:border-0  md:hover:bg-black   {{ Route::is('input')? ' bg-black' : 'text-white' }}">Input</a>
+                    <a href="{{ Route('input') }}" class="block p-3 md:p-2 text-white rounded hover:bg-gray-500  md:hover:bg-transparent md:border-0  md:hover:bg-black   {{ Route::is('input')? ' text-blue-700' : 'text-white' }}">Input</a>
                 </li>
                 <li>
-                    <a href="{{ Route('management') }}" class="block p-3 md:p-2 text-white rounded hover:bg-gray-500  md:hover:bg-transparent md:border-0  md:hover:bg-black   {{ Route::is('management')? ' bg-black' : 'text-white' }}">Managemen</a>
+                    <a href="{{ Route('management') }}" class="block p-3 md:p-2 text-white rounded hover:bg-gray-500  md:hover:bg-transparent md:border-0  md:hover:bg-black   {{ Route::is('management')? ' text-blue-700' : 'text-white' }}">Managemen</a>
                 </li>
                 <li>
                     <form action="/logout" method="POST">
