@@ -15,13 +15,13 @@ class ImbController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nomor_dp' => 'required|numeric',
+            'nomor_dp' => 'required',
             'nama' => 'nullable',
             'alamat' => 'nullable',
             'lokasi' => 'nullable',
             'box' => 'nullable',
             'keterangan' => 'nullable',
-            'tahun' => 'nullable',
+            'tahun' => 'nullable|integer|min:1901|max:2155',
             'imbs' => 'nullable' // Field untuk file PDF yang digabungkan
         ]);
 
@@ -69,12 +69,12 @@ class ImbController extends Controller
         // Validasi data yang diterima dari request
         $validateData = $request->validate([
             'nomor_dp' => 'required|numeric',
-            'nama' => 'required',
-            'alamat' => 'required',
-            'lokasi' => 'required',
-            'box' => 'required',
+            'nama' => 'nullable',
+            'alamat' => 'nullable',
+            'lokasi' => 'nullable',
+            'box' => 'nullable',
             'keterangan' => 'nullable',
-            'tahun' => 'required',
+            'tahun' => 'nullable|integer|min:1901|max:2155',
             'imbs' => 'nullable|string', // Asumsikan imbs dikirim sebagai string base64
         ]);
 
