@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('container')
 @if ($errors->any())
-<div id="alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+<div id="alertBox" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
     <strong class="font-bold">Oops!</strong>
     <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
 </div>
@@ -99,9 +99,9 @@
 </form>
 
 <script>
-    let alert = document.getElementById('alert');
+    let alertBox = document.getElementById('alertBox');
     setTimeout(() => {
-        alert.style.display = 'none'
+        alertBox.style.display = 'none'
     }, 3000);
 
 
