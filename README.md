@@ -22,16 +22,20 @@ A web-based application designed for the digital archiving and management of IMB
 | **![Form](./docs/images/Screenshot_3.png)** | **![Management](./docs/images/Screenshot_4.png)** |
 
 
-##  Key Features
+## ✨ Key Features
 
--    **Secure Authentication:** A dedicated login system to ensure data security and integrity.
--    **Interactive Dashboard:** A visual dashboard presenting key statistics, including a chart summarizing archives by year.
--    **Comprehensive IMB Data Management:** Full CRUD (Create, Read, Update, Delete) functionality for IMB archives with detailed fields such as `Nomor DP`, `Nama`, `Alamat`, `Lokasi`, and `Box`.
--    **PDF Manipulation Tools:**
-    -   **File Uploads:** Easily upload and attach original IMB documents in PDF format to each record.
-    -   **PDF Merging:** A unique feature to combine multiple PDF files directly within the application.
-    -   **PDF Generation & Printing:** Ability to print individual records or all data from the management table.
--    **Advanced Search & Filtering:** A powerful and intuitive search bar and filtering system to quickly locate specific archives.
+-    **Secure Authentication,** A dedicated login system to ensure data security and integrity.
+-    **Interactive Dashboard,** A visual dashboard presenting key statistics, including a chart summarizing archives by year.
+-    **Comprehensive Archive Management:**
+     -   Full CRUD (Create, Read, Update, Delete) functionality for IMB records.
+     -   Attach original scanned documents in PDF format to each record.
+     -   **Directly view or download the original uploaded PDF file** for easy access and verification.
+-    **Powerful Search & Reporting:**
+     -   An intuitive search bar and filtering system to quickly locate specific archives.
+     -   **Generate and export the filtered data list as a new PDF document.**
+     -   **Print the filtered report list** directly from the browser.
+-    **Advanced PDF Tools:**
+     -   A unique feature to **merge multiple individual PDF files** into a single
 
 ##  Tech Stack
 
